@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neon Heart Animation</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="scene">
+    <div class="backdrop"></div>
+    <div class="stage">
+      <div class="particles"></div>
+
+      <svg class="heart" viewBox="0 0 100 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <path id="heartPath" d="M50 82s-30-18-30-40c0-12 10-22 20-22 6 0 10 4 10 4s4-4 10-4c10 0 20 10 20 22 0 22-30 40-30 40z" />
+
+          <clipPath id="clip-left">
+            <rect x="0" y="0" width="50" height="90" />
+          </clipPath>
+          <clipPath id="clip-right">
+            <rect x="50" y="0" width="50" height="90" />
+          </clipPath>
+
+          <filter id="glow-lg" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="b" />
+            <feMerge>
+              <feMergeNode in="b" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-md" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="b" />
+            <feMerge>
+              <feMergeNode in="b" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-sm" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1.5" result="b" />
+            <feMerge>
+              <feMergeNode in="b" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Outline strokes (draw from both ends) -->
+        <path id="outlineLeft" class="outline outline-left" d="M50 82s-30-18-30-40c0-12 10-22 20-22 6 0 10 4 10 4s4-4 10-4c10 0 20 10 20 22 0 22-30 40-30 40z" />
+        <path id="outlineRight" class="outline outline-right" d="M50 82s-30-18-30-40c0-12 10-22 20-22 6 0 10 4 10 4s4-4 10-4c10 0 20 10 20 22 0 22-30 40-30 40z" />
+
+        <!-- Left half -->
+        <g class="half left" clip-path="url(#clip-left)">
+          <g class="heart-group" transform="translate(0,4)">
+            <use href="#heartPath" class="layer layer-lg" filter="url(#glow-lg)" />
+            <use href="#heartPath" class="layer layer-md" filter="url(#glow-md)" />
+            <use href="#heartPath" class="layer layer-sm" filter="url(#glow-sm)" />
+            <use href="#heartPath" class="layer layer-core" />
+          </g>
+        </g>
+
+        <!-- Right half -->
+        <g class="half right" clip-path="url(#clip-right)">
+          <g class="heart-group" transform="translate(0,4)">
+            <use href="#heartPath" class="layer layer-lg" filter="url(#glow-lg)" />
+            <use href="#heartPath" class="layer layer-md" filter="url(#glow-md)" />
+            <use href="#heartPath" class="layer layer-sm" filter="url(#glow-sm)" />
+            <use href="#heartPath" class="layer layer-core" />
+          </g>
+        </g>
+      </svg>
+
+      <div class="message" aria-hidden="true">I love you, little sister</div>
+    </div>
+
+    <button id="pauseBtn" class="control" aria-pressed="false">Pause</button>
+  </div>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>
